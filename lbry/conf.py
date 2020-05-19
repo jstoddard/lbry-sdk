@@ -634,7 +634,7 @@ class Config(CLIConfig):
 
     coin_selection_strategy = StringChoice(
         "Strategy to use when selecting UTXOs for a transaction",
-        STRATEGIES, "standard")
+        STRATEGIES, "sqlite")
 
     save_resolved_claims = Toggle(
         "Save content claims to the database when they are resolved to keep file_list up to date, "
