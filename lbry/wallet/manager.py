@@ -301,6 +301,9 @@ class WalletManager:
             await self.ledger.broadcast(tx)
             if blocking:
                 await self.ledger.wait(tx, timeout=None)
+        except CodeMessageError as err:
+            log.warning("transaction rejected, leaving reserved")
+            raise
         except:
             await self.ledger.release_tx(tx)
             raise
