@@ -990,7 +990,7 @@ class LBRYElectrumX(SessionBase):
         except reader.SQLiteInterruptedError as error:
             metrics = self.get_metrics_or_placeholder_for_api(query_name)
             metrics.query_interrupt(start, error.metrics)
-            self.session_mgr.self.session_mgr.SQLITE_INTERRUPT_COUNT.inc()
+            self.session_mgr.interrupt_count_metric.inc()
             raise RPCError(JSONRPC.QUERY_TIMEOUT, 'sqlite query timed out')
         except reader.SQLiteOperationalError as error:
             metrics = self.get_metrics_or_placeholder_for_api(query_name)
